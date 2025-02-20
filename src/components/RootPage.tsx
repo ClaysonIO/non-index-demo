@@ -2,7 +2,7 @@ function RootPage() {
   return (
     <div className="page">
       <h1>Root Page</h1>
-      <p>This is the content of the root page</p>
+      <p>Refreshing on this page will always work, both online and while using the Netlify CLI</p>
     </div>
   )
 }

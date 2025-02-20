@@ -1,50 +1,20 @@
-# React + TypeScript + Vite
+# Using Netlify CLI to develop a Vite React app 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+I am trying to use Netlify CLI while developing a Vite React app. I'm running into an issue with having the react app 
+on a non-index.html page.
 
-Currently, two official plugins are available:
+I can boot the application and navigate to all of the desired locations, but if I refresh the page, I get a 404 error.
+Note that all of this works while it's deployed to Netlify, it's only an error when run locally using the Netlify CLI. 
+It appears that the netlify.toml redirects are not being applied for the `/app/*` routes.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Replication Steps
 
-## Expanding the ESLint configuration
+1. Clone the repository
+2. Run `npm install`
+3. Run `npm run netlify`
+4. Navigate to `http://localhost:8888`
+5. Click on the `Navigate to React SPA` button. This will take you to the `/app` route.
+6. Click on the `Page 1` link. This will take you to the `/app/page1` route.
+7. Refresh the page. You will see a 404 error. 
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+If this application is deployed to Netlify, the refresh works as expected. This is demontrated at [https://non-index-demo.netlify.app](https://non-index-demo.netlify.app).
